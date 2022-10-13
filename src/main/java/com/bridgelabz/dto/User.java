@@ -1,8 +1,25 @@
 package com.bridgelabz.dto;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student")
 public class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
 	private String firstName;
 	private String lastName;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -24,5 +41,4 @@ public class User {
 	public String toString() {
 		return "User{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + '}';
 	}
-
 }

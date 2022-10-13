@@ -2,12 +2,12 @@ package com.bridgelabz.services;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.controller.Greeting;
 import com.bridgelabz.dto.User;
-import com.bridgelabz.dto.UserDto;
+import com.bridgelabz.repository.IGreetingRepository;
 
 @Service
 public class GreetingServices implements IGreetingService {
@@ -19,12 +19,13 @@ public class GreetingServices implements IGreetingService {
 		return new Greeting(counter.incrementAndGet(), String.format(template));
 	}
 
+	@Autowired
+	IGreetingRepository repository;
+
 	@Override
-	public String greetingMessageByName(UserDto userDto) {
-		User user = new User();
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.map(userDto, user);
-		return ("Hello " + user.getFirstName() + " " + user.getLastName());
+	public User greetingMessageByName(User user) {
+		User response = repository.save(user);
+		return response;
 	}
 
 }

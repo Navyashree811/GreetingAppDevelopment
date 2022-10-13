@@ -5,12 +5,18 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bridgelabz.dto.User;
+import com.bridgelabz.dto.UserDto;
 import com.bridgelabz.services.IGreetingService;
 
 @RestController
+@RequestMapping("student")
 public class GreetingController {
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
@@ -50,6 +56,12 @@ public class GreetingController {
 	public Greeting greeting() {
 		return greetingService.greetingMessage();
 
+	}
+
+	@PostMapping("/insert")
+	public User greetingMessage(@RequestBody User user) {
+		User control = greetingService.greetingMessageByName(user);
+		return control;
 	}
 
 }
