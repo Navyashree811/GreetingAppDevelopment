@@ -51,4 +51,5 @@ public class GreetingController {
 		return greetingService.greetingMessage();
 
 	}
+
 }
