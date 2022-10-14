@@ -1,5 +1,6 @@
 package com.bridgelabz.services;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,9 @@ public class GreetingServices implements IGreetingService {
 		return response;
 	}
 
+	@Override
+	public User getById(long id) {
+		Optional<User> greetById = repository.findById(id);
+		return greetById.orElse(null);
+	}
 }

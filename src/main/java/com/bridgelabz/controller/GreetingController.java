@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.dto.User;
-import com.bridgelabz.dto.UserDto;
 import com.bridgelabz.services.IGreetingService;
 
 @RestController
@@ -62,6 +61,11 @@ public class GreetingController {
 	public User greetingMessage(@RequestBody User user) {
 		User control = greetingService.greetingMessageByName(user);
 		return control;
+	}
+
+	@GetMapping("/find")
+	public User findGreetById(@RequestParam long id) {
+		return greetingService.getById(id);
 	}
 
 }
