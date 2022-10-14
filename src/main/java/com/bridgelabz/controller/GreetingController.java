@@ -1,5 +1,6 @@
 package com.bridgelabz.controller;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,11 @@ public class GreetingController {
 	@GetMapping("/find")
 	public User findGreetById(@RequestParam long id) {
 		return greetingService.getById(id);
+	}
+
+	@GetMapping("/allgreetings")
+	public List<User> findAllGreeting() {
+		return greetingService.getAllGreetingMessages();
 	}
 
 }

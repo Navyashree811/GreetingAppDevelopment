@@ -1,5 +1,6 @@
 package com.bridgelabz.services;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -33,5 +34,10 @@ public class GreetingServices implements IGreetingService {
 	public User getById(long id) {
 		Optional<User> greetById = repository.findById(id);
 		return greetById.orElse(null);
+	}
+
+	@Override
+	public List<User> getAllGreetingMessages() {
+		return repository.findAll();
 	}
 }
